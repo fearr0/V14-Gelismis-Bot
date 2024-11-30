@@ -58,15 +58,15 @@ fs.readdir(commandsPath, (err, folders) => {
     });
 });
 
-const eventsPath = path.join(__dirname, '../../Bots/Events'); // Event dosyalarının bulunduğu dizin
+const eventsPath = path.join(__dirname, '../../Bots/Events'); 
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
-    const event = require(path.join(eventsPath, file)); // Tam dosya yolunu oluştur
+    const event = require(path.join(eventsPath, file));
     if (event.once) {
-        client.once(event.name, (...args) => event.execute(client, ...args)); // Sadece bir kez çalışacaksa
+        client.once(event.name, (...args) => event.execute(client, ...args));
     } else {
-        client.on(event.name, (...args) => event.execute(client, ...args)); // Sürekli çalışacaksa
+        client.on(event.name, (...args) => event.execute(client, ...args));
     }
 }
 
